@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { Logo } from "./logo";
 import { defaultConfig } from "@/lib/default-config";
-import { FaFacebook, FaLinkedin, FaGoogle } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaGoogle } from "react-icons/fa";
 import { HiLocationMarker, HiPhone, HiMail } from "react-icons/hi";
 
 export const Footer = ({
@@ -11,7 +11,6 @@ export const Footer = ({
     address = defaultConfig.address,
     placeId = null,
 }) => {
-    // Helper function to prefix href with placeId if on demo site
     const getHref = (href) => {
         if (placeId) {
             return `/${placeId}${href}`;
@@ -20,20 +19,28 @@ export const Footer = ({
     };
     const services = [
         {
-            name: "Residential Roofing",
-            href: "/services/residential",
+            name: "Custom Pool Design & Build",
+            href: "/services/pool-design-build",
         },
         {
-            name: "Commercial Roofing",
-            href: "/services/commercial",
+            name: "Outdoor Living Spaces",
+            href: "/services/outdoor-living",
         },
         {
-            name: "Storm Damage",
-            href: "/services/storm-damage",
+            name: "Turf Installation",
+            href: "/services/turf-installation",
         },
         {
-            name: "Gutter Services",
-            href: "/services/gutters",
+            name: "Pool Renovation",
+            href: "/services/pool-renovation",
+        },
+        {
+            name: "Equipment Upgrades",
+            href: "/services/equipment-upgrades",
+        },
+        {
+            name: "Standby Generators",
+            href: "/services/standby-generators",
         },
     ];
 
@@ -51,25 +58,25 @@ export const Footer = ({
             href: "/gallery",
         },
         {
-            name: "Contact",
-            href: "/contact",
+            name: "Get a Quote",
+            href: "/get-a-quote",
         },
     ];
 
     const socials = [
         {
             name: "Facebook",
-            href: "https://www.facebook.com/rooferaai",
+            href: defaultConfig.socials.facebook,
             icon: FaFacebook,
         },
         {
-            name: "LinkedIn",
-            href: "https://www.linkedin.com/company/roofera",
-            icon: FaLinkedin,
+            name: "Instagram",
+            href: defaultConfig.socials.instagram,
+            icon: FaInstagram,
         },
         {
             name: "Google",
-            href: "https://google.com",
+            href: defaultConfig.socials.google,
             icon: FaGoogle,
         },
     ];
@@ -81,7 +88,7 @@ export const Footer = ({
                     {/* Company Info Section */}
                     <div className="space-y-6">
                         <div className="mb-4">
-                            <Logo companyName={companyName} />
+                            <Logo name={defaultConfig.logoName} />
                         </div>
 
                         {/* Social Icons */}
@@ -92,7 +99,7 @@ export const Footer = ({
                                     href={social.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-muted-foreground hover:text-orange-500 transition-colors"
+                                    className="text-muted-foreground hover:text-primary transition-colors"
                                     aria-label={social.name}
                                 >
                                     <social.icon className="size-6" />
@@ -101,9 +108,9 @@ export const Footer = ({
                         </div>
 
                         <p className="text-muted-foreground text-sm leading-relaxed">
-                            {companyName} is happy to offer you a free roofing inspection. If you
-                            suspect damage to your roof, whether major or minor, contact us right
-                            away. We look forward to being your #1 choice.
+                            {companyName} designs and builds custom pools, outdoor living spaces,
+                            and standby power systems for homes across Texas. Licensed & insured
+                            Texas contractor.
                         </p>
                     </div>
 
@@ -154,7 +161,7 @@ export const Footer = ({
                             <li className="flex items-start gap-3">
                                 <HiLocationMarker className="size-5 text-muted-foreground shrink-0 mt-0.5" />
                                 <span className="text-muted-foreground text-sm">
-                                    {address || "123 Main Street, Your City, ST 12345"}
+                                    {address || "2310 Windmill Dr, Richmond, TX 77406"}
                                 </span>
                             </li>
                             <li className="flex items-center gap-3">
@@ -169,10 +176,10 @@ export const Footer = ({
                             <li className="flex items-center gap-3">
                                 <HiMail className="size-5 text-muted-foreground shrink-0" />
                                 <a
-                                    href="mailto:ryan@roofera.ai"
+                                    href={`mailto:${defaultConfig.email}`}
                                     className="text-muted-foreground hover:text-primary transition-colors text-sm"
                                 >
-                                    ryan@roofera.ai
+                                    {defaultConfig.email}
                                 </a>
                             </li>
                         </ul>

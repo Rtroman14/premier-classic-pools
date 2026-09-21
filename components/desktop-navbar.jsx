@@ -47,7 +47,7 @@ export function DesktopNavbar({
     navItems,
     isAuthenticated = false,
     phoneNumber = defaultConfig.phoneNumber,
-    companyName = defaultConfig.companyName,
+    logoName = defaultConfig.logoName,
     placeId = null,
 }) {
     const { scrollY } = useScroll();
@@ -94,7 +94,7 @@ export function DesktopNavbar({
             <div className="flex flex-row gap-2 items-center">
                 <Logo
                     className={textColor}
-                    companyName={companyName}
+                    name={logoName}
                     href={placeId ? `/${placeId}` : "/"}
                 />
                 <NavigationMenu delayDuration={100}>

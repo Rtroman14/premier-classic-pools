@@ -61,7 +61,7 @@ export default async function DemoLayout({ children, params }) {
 
             <NavBar
                 phoneNumber={config.phoneNumber}
-                companyName={config.companyName}
+                logoName={config.companyName}
                 cityName={config.city || "City"}
                 placeId={placeId}
             />

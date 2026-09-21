@@ -8,42 +8,50 @@ import { defaultConfig } from "@/lib/default-config";
 
 export function NavBar({
     phoneNumber = defaultConfig.phoneNumber,
-    companyName = defaultConfig.companyName,
+    logoName = defaultConfig.logoName,
     cityName = "City",
     placeId = null,
 }) {
     const navItems = useMemo(
         () => [
             {
-                title: "About Us",
-                href: "/about-us",
-            },
-            {
                 title: "Services",
                 children: [
                     {
-                        title: "Residential",
-                        href: "/services/residential",
+                        title: "Custom Pool Design & Build",
+                        href: "/services/pool-design-build",
                         description:
-                            "Expert roofing solutions for homeowners and residential properties.",
+                            "Gunite pools shaped around how your family actually lives outside.",
                     },
                     {
-                        title: "Commercial",
-                        href: "/services/commercial",
+                        title: "Outdoor Living Spaces",
+                        href: "/services/outdoor-living",
                         description:
-                            "Professional roofing services for businesses and commercial buildings.",
+                            "Kitchens, pergolas, fire features, and decking around the pool.",
                     },
                     {
-                        title: "Gutters",
-                        href: "/services/gutters",
+                        title: "Turf Installation",
+                        href: "/services/turf-installation",
                         description:
-                            "Installation, repair, and maintenance for seamless gutter systems.",
+                            "Premium artificial turf and putting greens — low-maintenance and poolside-ready.",
                     },
                     {
-                        title: "Storm Damage",
-                        href: "/services/storm-damage",
+                        title: "Pool Renovation",
+                        href: "/services/pool-renovation",
                         description:
-                            "24/7 emergency response and insurance claim assistance for storm damage.",
+                            "Resurfacing, new plaster, tile, and coping for existing pools.",
+                    },
+                    {
+                        title: "Equipment Upgrades",
+                        href: "/services/equipment-upgrades",
+                        description:
+                            "Pumps, filters, heaters, and automation to modernize your pool.",
+                    },
+                    {
+                        title: "Standby Generators",
+                        href: "/services/standby-generators",
+                        description:
+                            "Kohler standby generator sales and installation.",
                     },
                 ],
             },
@@ -57,18 +65,30 @@ export function NavBar({
                     {
                         title: "View All Areas",
                         href: "/service-areas",
-                        description: "See all the cities and neighborhoods we serve in your area.",
+                        description:
+                            "See all the cities we serve across the Houston area.",
                     },
                     {
-                        title: cityName,
-                        href: "/service-areas/city",
-                        description: `Expert roofing services throughout ${cityName} and surrounding areas.`,
+                        title: "Houston",
+                        href: "/service-areas/houston",
+                        description: "Custom pools and outdoor living in Houston, TX.",
+                    },
+                    {
+                        title: "Katy",
+                        href: "/service-areas/katy",
+                        description: "Pool construction in Katy, TX.",
+                    },
+                    {
+                        title: "Sugar Land",
+                        href: "/service-areas/sugar-land",
+                        description: "Pool building in Sugar Land, TX.",
+                    },
+                    {
+                        title: "Cypress",
+                        href: "/service-areas/cypress",
+                        description: "Pool construction in Cypress, TX.",
                     },
                 ],
-            },
-            {
-                title: "Contact",
-                href: "/contact",
             },
         ],
         [cityName]
@@ -104,14 +124,14 @@ export function NavBar({
                     <MobileNavbar
                         navItems={navItems}
                         phoneNumber={phoneNumber}
-                        companyName={companyName}
+                        logoName={logoName}
                         placeId={placeId}
                     />
                 ) : (
                     <DesktopNavbar
                         navItems={navItems}
                         phoneNumber={phoneNumber}
-                        companyName={companyName}
+                        logoName={logoName}
                         placeId={placeId}
                     />
                 )}

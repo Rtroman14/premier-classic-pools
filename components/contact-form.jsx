@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { handleContactFormSubmit } from "@/lib/form-actions";
 
 export function ContactForm({
-    title = "Get a Free Roof Inspection",
+    title = "Request a Consultation",
     subtitle = "Fill out the form below and we'll get back to you within 24 hours.",
 }) {
     const [formData, setFormData] = useState({
@@ -197,7 +197,7 @@ export function ContactForm({
                         <Textarea
                             id="message"
                             name="message"
-                            placeholder="Tell us about your roofing needs..."
+                            placeholder="Tell us about your project..."
                             value={formData.message}
                             onChange={handleChange}
                             required

@@ -3,12 +3,12 @@ import { CircleCheckBig } from "lucide-react";
 import { GetQuoteButton } from "@/components/get-quote-button";
 
 const benefits = [
-    "Licensed & fully insured contractors",
-    "Premium materials from trusted brands",
-    "Comprehensive warranty coverage",
-    "Free estimates & consultations",
-    "Emergency repair services",
-    "Financing options available",
+    "200+ pools built across the Houston area",
+    "Licensed & insured Texas builder",
+    "Kohler-certified standby generator installer",
+    "Family owned, on-site every build",
+    "Fixed-price proposals — no surprises",
+    "Weekly progress updates throughout construction",
 ];
 
 export const WhyChooseUs = () => {
@@ -17,13 +17,13 @@ export const WhyChooseUs = () => {
             <div className="space-y-8">
                 <div className="space-y-4">
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                        Why homeowners trust us with their roofs
+                        Why homeowners trust us with their backyards
                     </h2>
                     <p className="text-lg text-muted-foreground leading-relaxed">
-                        For over 25 years, we've been protecting families and their homes with
-                        exceptional roofing services. Our commitment to quality craftsmanship and
-                        customer satisfaction has made us the leading roofing contractor in the
-                        region.
+                        We build custom pools, outdoor living spaces, and standby power systems as
+                        one connected project — not three separate contractors. Our commitment to
+                        quality craftsmanship and on-site ownership has made us a trusted pool
+                        builder across the Houston area.
                     </p>
                 </div>
 
@@ -45,7 +45,7 @@ export const WhyChooseUs = () => {
                 <div className="relative aspect-4/5 w-full rounded-2xl overflow-hidden">
                     <Image
                         src="/professional-roofer-installing-shingles-on-house.jpg"
-                        alt="Professional roofer installing shingles on house"
+                        alt="Pool construction in progress"
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -53,8 +53,8 @@ export const WhyChooseUs = () => {
                 </div>
 
                 <div className="absolute bottom-8 left-8 sm:bottom-12 sm:-left-12 bg-primary text-white p-8 rounded-xl shadow-xl max-w-xs">
-                    <div className="text-4xl font-bold mb-1">50+ Years</div>
-                    <div className="text-blue-100 font-medium">Combined team experience</div>
+                    <div className="text-4xl font-bold mb-1">200+</div>
+                    <div className="text-blue-100 font-medium">Pools built across Houston</div>
                 </div>
             </div>
         </div>

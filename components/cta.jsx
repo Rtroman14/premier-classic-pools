@@ -10,13 +10,6 @@ export const CTA = ({ title, subheading, phoneNumber = defaultConfig.phoneNumber
             <div className="mx-auto w-full relative z-20 sm:max-w-160 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl bg-primary rounded-xl sm:rounded-2xl">
                 <div className="relative -mx-6 sm:mx-0 sm:rounded-2xl overflow-hidden px-6 md:px-8">
                     <div
-                        className="absolute inset-0 w-full h-full opacity-10 bg-noise fade-vignette mask-[radial-gradient(#fff,transparent,75%)]"
-                        style={{
-                            backgroundImage: "url(/noise.webp)",
-                            backgroundSize: "30%",
-                        }}
-                    ></div>
-                    <div
                         className="pointer-events-none absolute inset-y-0 right-0 select-none overflow-hidden rounded-2xl"
                         style={{
                             mask: "radial-gradient(33.875rem 33.875rem at calc(100% - 8.9375rem) 0, white 3%, transparent 70%)",

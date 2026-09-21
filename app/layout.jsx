@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
                     "antialiased"
                 )}
             >
-                <Providers color="#3DCF8E">{children}</Providers>
+                <Providers color="#2563eb">{children}</Providers>
             </body>
         </html>
     );

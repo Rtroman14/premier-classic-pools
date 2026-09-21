@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# original single-file build used as the copy source
+/index.html
+
 # debug
 npm-debug.log*
 yarn-debug.log*

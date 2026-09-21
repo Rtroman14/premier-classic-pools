@@ -1,4 +1,4 @@
-import ContactPage from "@/app/(marketing)/contact/page";
+import ContactPage from "@/app/(marketing)/get-a-quote/page";
 import { fetchPlaceData } from "@/lib/actions/fetch-place-data";
 import { isValidPlaceId } from "@/lib/validators";
 import { notFound } from "next/navigation";
