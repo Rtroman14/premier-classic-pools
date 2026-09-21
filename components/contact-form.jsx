@@ -5,31 +5,54 @@ import { Field, FieldLabel, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { handleContactFormSubmit } from "@/lib/form-actions";
+import { PlaceAutocomplete } from "@/components/ui/place-autocomplete";
+import { submitContactForm } from "@/lib/actions/submit-contact-form";
+
+const emptyForm = {
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    placeId: "",
+    street: "",
+    city: "",
+    state: "",
+    zip: "",
+    lat: null,
+    lng: null,
+    message: "",
+};
 
 export function ContactForm({
     title = "Request a Consultation",
     subtitle = "Fill out the form below and we'll get back to you within 24 hours.",
 }) {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        street: "",
-        city: "",
-        state: "",
-        zip: "",
-        message: "",
-    });
+    const [formData, setFormData] = useState(emptyForm);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    // Typing in the address input clears any previously resolved place details.
+    const handleAddressChange = (address) => {
         setFormData((prev) => ({
             ...prev,
-            [name]: value,
+            address,
+            placeId: "",
+            street: "",
+            city: "",
+            state: "",
+            zip: "",
+            lat: null,
+            lng: null,
         }));
+    };
+
+    const handleAddressSelect = (place) => {
+        setFormData((prev) => ({ ...prev, ...place }));
     };
 
     const handleSubmit = async (e) => {
@@ -38,21 +61,11 @@ export function ContactForm({
         setSubmitStatus(null);
 
         try {
-            const result = await handleContactFormSubmit(formData);
+            const result = await submitContactForm(formData);
             setSubmitStatus(result);
 
             if (result.success) {
-                // Reset form on success
-                setFormData({
-                    name: "",
-                    email: "",
-                    phone: "",
-                    street: "",
-                    city: "",
-                    state: "",
-                    zip: "",
-                    message: "",
-                });
+                setFormData(emptyForm);
             }
         } catch (error) {
             setSubmitStatus({
@@ -129,68 +142,17 @@ export function ContactForm({
                         </Field>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <Field>
-                            <FieldLabel htmlFor="street">Street Address</FieldLabel>
-                            <Input
-                                id="street"
-                                name="street"
-                                type="text"
-                                placeholder="123 Main St"
-                                value={formData.street}
-                                onChange={handleChange}
-                                required
-                                disabled={isSubmitting}
-                            />
-                        </Field>
-
-                        <Field>
-                            <FieldLabel htmlFor="city">City</FieldLabel>
-                            <Input
-                                id="city"
-                                name="city"
-                                type="text"
-                                placeholder="San Francisco"
-                                value={formData.city}
-                                onChange={handleChange}
-                                required
-                                disabled={isSubmitting}
-                            />
-                        </Field>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <Field>
-                            <FieldLabel htmlFor="state">State</FieldLabel>
-                            <Input
-                                id="state"
-                                name="state"
-                                type="text"
-                                placeholder="CA"
-                                value={formData.state}
-                                onChange={handleChange}
-                                required
-                                disabled={isSubmitting}
-                                maxLength={2}
-                            />
-                        </Field>
-
-                        <Field>
-                            <FieldLabel htmlFor="zip">Zip Code</FieldLabel>
-                            <Input
-                                id="zip"
-                                name="zip"
-                                type="text"
-                                placeholder="94102"
-                                value={formData.zip}
-                                onChange={handleChange}
-                                required
-                                disabled={isSubmitting}
-                                pattern="[0-9]{5}"
-                                maxLength={5}
-                            />
-                        </Field>
-                    </div>
+                    <Field>
+                        <FieldLabel htmlFor="address">Project Address</FieldLabel>
+                        <PlaceAutocomplete
+                            id="address"
+                            value={formData.address}
+                            onChange={handleAddressChange}
+                            onSelect={handleAddressSelect}
+                            disabled={isSubmitting}
+                            required
+                        />
+                    </Field>
 
                     <Field>
                         <FieldLabel htmlFor="message">Message</FieldLabel>
@@ -205,6 +167,13 @@ export function ContactForm({
                             rows={4}
                         />
                     </Field>
+
+                    <p className="text-xs leading-normal text-muted-foreground">
+                        By submitting this form, you consent to receive non-marketing text messages
+                        from Premier Classic Pools &amp; Outdoors about solutions, support, and
+                        scheduling. Message &amp; data rates may apply. Message frequency varies.
+                        Reply HELP for help or STOP to opt-out.
+                    </p>
 
                     <Button
                         type="submit"

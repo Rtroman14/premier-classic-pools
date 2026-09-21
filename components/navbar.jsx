@@ -3,7 +3,7 @@
 import { DesktopNavbar } from "./desktop-navbar";
 import { MobileNavbar } from "./mobile-navbar";
 import { motion } from "framer-motion";
-import { useEffect, useState, useMemo } from "react";
+import { useMemo } from "react";
 import { defaultConfig } from "@/lib/default-config";
 
 export function NavBar({
@@ -93,18 +93,6 @@ export function NavBar({
         ],
         [cityName]
     );
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkIsMobile = () => {
-            setIsMobile(window.innerWidth <= 500);
-        };
-
-        checkIsMobile();
-        window.addEventListener("resize", checkIsMobile);
-        return () => window.removeEventListener("resize", checkIsMobile);
-    }, []);
-
     return (
         <motion.nav
             initial={{
@@ -120,21 +108,22 @@ export function NavBar({
             className="md:max-w-7xl fixed top-4 mx-auto inset-x-0 z-99999 w-[90vw] lg:w-full"
         >
             <div className="w-full">
-                {isMobile ? (
+                <div className="lg:hidden">
                     <MobileNavbar
                         navItems={navItems}
                         phoneNumber={phoneNumber}
                         logoName={logoName}
                         placeId={placeId}
                     />
-                ) : (
+                </div>
+                <div className="hidden lg:block">
                     <DesktopNavbar
                         navItems={navItems}
                         phoneNumber={phoneNumber}
                         logoName={logoName}
                         placeId={placeId}
                     />
-                )}
+                </div>
             </div>
         </motion.nav>
     );
